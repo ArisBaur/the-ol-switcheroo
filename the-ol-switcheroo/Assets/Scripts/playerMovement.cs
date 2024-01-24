@@ -1,74 +1,92 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-
+    //TODO: while in air you slow down to the left but contiue your speed when moving right ???
     private GameObject player;
+    private Rigidbody2D rb;
     public KeyCode left;
     public KeyCode right;
-    public KeyCode up;
-    public KeyCode down;
+    public KeyCode jump;
 
-    private int inputX;
-    private int inputY;
+    private float inputX;
+    private float inputY;
+
+    public float jumpforce;
+    private bool isGrounded = false;
 
     public float acceleration;
-    private Vector2 velocity;
+    public float speed;
+    private Vector2 currentVelocity;
+
+    private bool isFacingRight;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         player = gameObject;
-        
+        rb = player.GetComponent<Rigidbody2D>();
+       
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //left right movement
+        if (Input.GetKey(left))
+            inputX -= 1;
+        else
+        {
+            inputX = 0f;
+        }
+        if (Input.GetKey(right))
+            inputX += 1;
+        else
+        {
+            inputY = 0f;
+        }
 
-        inputX = 0;
-        inputY = 0;
 
-        if(Input.GetKeyUp(up))
+        //jumping
+        if (Input.GetKey(jump) && isGrounded)
         {
-            inputY = 1;
+            rb.velocity = new Vector2(rb.velocity.x, jumpforce);
         }
-        if(Input.GetKeyUp(left))
-        {
-            inputX = -1;
-        }
-        if (Input.GetKeyUp(down))
-        {
-            inputY = -1;
-        }
-        if(Input.GetKeyUp(right))
-        {
-            inputX = 1;
-        }
+
     }
 
 
     private void FixedUpdate()
     {
-        if (inputX < 0)
+
+        Vector2 targetVelocity = new Vector2(inputX, rb.velocity.y).normalized * speed; //get max vel
+        currentVelocity = Vector2.MoveTowards(currentVelocity, targetVelocity, acceleration); //accelerate
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(currentVelocity.x, rb.velocity.y); //set velocity
+
+
+
+        //flipping when turning around
+        if (isFacingRight && inputX > 0f || !isFacingRight && inputX < 0f)
         {
-            player.GetComponent<Rigidbody2D>().position += new Vector2(-1, 0);
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
         }
-        if (inputX > 0)
-        {
-            player.GetComponent<Rigidbody2D>().position += new Vector2(1, 0);
-        }
-        if (inputY < 0)
-        {
-            player.GetComponent<Rigidbody2D>().position += new Vector2(0, -1);
-        }
-        if (inputY > 0)
-        {
-            player.GetComponent<Rigidbody2D>().position += new Vector2(0, 1);
-        }
+
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        isGrounded = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isGrounded = false;
     }
 
 }
