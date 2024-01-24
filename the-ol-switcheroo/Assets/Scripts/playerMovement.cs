@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -17,6 +18,7 @@ public class playerMovement : MonoBehaviour
 
     public float jumpforce;
     private bool isGrounded = false;
+    public LayerMask groundMask;
 
     public float acceleration;
     public float speed;
@@ -35,17 +37,17 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
         //left right movement
-        if (Input.GetKey(left))
-            inputX -= 1;
-        else
-        {
-            inputX = 0f;
-        }
         if (Input.GetKey(right))
-            inputX += 1;
+        {
+            inputX = 1;
+        }
+        else if (Input.GetKey(left))
+        {
+            inputX = -1;
+        }
         else
         {
-            inputY = 0f;
+            inputX = 0;
         }
 
 
@@ -61,10 +63,14 @@ public class playerMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
-        Vector2 targetVelocity = new Vector2(inputX, rb.velocity.y).normalized * speed; //get max vel
-        currentVelocity = Vector2.MoveTowards(currentVelocity, targetVelocity, acceleration); //accelerate
-        player.GetComponent<Rigidbody2D>().velocity = new Vector2(currentVelocity.x, rb.velocity.y); //set velocity
+        //player doesnt stop mid air
+        if (isGrounded)
+        {
+            Vector2 targetVelocity = new Vector2(inputX, rb.velocity.y).normalized * speed; //get max vel
+            currentVelocity = Vector2.MoveTowards(currentVelocity, targetVelocity, acceleration); //accelerate
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(currentVelocity.x, rb.velocity.y); //set velocity
 
+        }
 
 
         //flipping when turning around
@@ -79,14 +85,25 @@ public class playerMovement : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        isGrounded = true;
+        LayerMask colliderLayer = other.gameObject.layer;
+
+        if ((groundMask & (1 << colliderLayer)) != 0)
+        {
+            isGrounded = true;
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        isGrounded = false;
+        LayerMask colliderLayer = other.gameObject.layer;
+
+        if ((groundMask & (1 << colliderLayer)) != 0)
+        {
+            isGrounded = false;
+        }
     }
+
 
 }
