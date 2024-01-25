@@ -15,9 +15,33 @@ using UnityEngine;
 
 
 
+/*  TABLE OF CONTENTS:
+ * void Start:
+ * - get gameObject and standart gravityscale(for jumping)
+ * 
+ * void Update:
+ * - left-right movement input
+ * - jumping + higher jumping
+ * - handle flipping
+ * 
+ * void FixedUpdate:
+ * - physics shit e.g:
+ * - handle movement (if grounded)
+ * 
+ * OnTriggerEnter2D/Exit2D
+ * - isGrounded check
+ * 
+ * 
+ * 
+ * 
+ */
+
+
+
 public class playerMovement : MonoBehaviour
 {
     // my hoard of variables
+    #region - my hoaaard
     private GameObject thisPlayer;
     private Rigidbody2D thisRb;
     [SerializeField] private KeyCode left;
@@ -33,14 +57,12 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
 
     [SerializeField] private float acceleration;
+    [SerializeField] private float deceleration;
     [SerializeField] private float speed;
-    public Vector2 currentVelocity;
+    public Vector2 currentVelocity { get; set; }
 
-    [SerializeField] private bool isFacingRight;
-
-    private Rigidbody2D otherRb;
-    [SerializeField] private GameObject otherPlayer;
-    [SerializeField] private KeyCode switchKey;
+    [SerializeField] public bool isFacingRight { get; set; }
+    #endregion
 
     //executed at start of game
     void Start()
@@ -48,7 +70,6 @@ public class playerMovement : MonoBehaviour
         thisPlayer = gameObject;
         thisRb = thisPlayer.GetComponent<Rigidbody2D>();
         standartJumpGravityScale = thisRb.gravityScale;
-        otherRb = otherPlayer.GetComponent<Rigidbody2D>();
     }
 
     //executed every frame
@@ -71,36 +92,6 @@ public class playerMovement : MonoBehaviour
             thisRb.gravityScale = standartJumpGravityScale * higherJumpModifier;
         }
 
-        //switching positions
-        if (Input.GetKeyDown(switchKey))
-        {
-            //create a "empty" thisRb for the transfer
-            // following this principle:
-            // to switch a and b, using a seperate container c
-            // a -> c, b -> a, c -> b
-            //Vector2 tempPosition = thisRb.position;
-            Vector2 tempVelocity = new Vector2(thisRb.velocity.x, 0);
-
-            //thisRb.position = otherRb.position;
-            thisRb.velocity = new Vector2(otherRb.velocity.x, 0);
-
-            //otherRb.position = tempPosition;
-            otherRb.velocity = new Vector2(tempVelocity.x, 0);
-
-        }
-    }
-
-    //executed at 60fps
-    private void FixedUpdate()
-    {
-        //only when in contact with the ground can you change your velocity
-        if (isGrounded)
-        {
-            Vector2 targetVelocity = new Vector2(inputX, thisRb.velocity.y).normalized * speed; //get max vel
-            currentVelocity = Vector2.MoveTowards(currentVelocity, targetVelocity, acceleration); //accelerate
-            thisPlayer.GetComponent<Rigidbody2D>().velocity = new Vector2(currentVelocity.x, thisRb.velocity.y); //set velocity
-        }
-
 
         //flipping when turning around
         if (isFacingRight && inputX > 0f || !isFacingRight && inputX < 0f)
@@ -110,6 +101,30 @@ public class playerMovement : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
+
+    }
+
+    //executed at 60fps
+    private void FixedUpdate()
+    {
+
+        //only when in contact with the ground can you change your velocity
+        
+        
+        if (!isGrounded)
+        {
+            // if in air -> no control over velocity (the players can't fly duh)
+            return;
+        }
+
+        //get target velocity
+        Vector2 targetVelocity = new Vector2(inputX, thisRb.velocity.y).normalized * speed; //get max vel
+        // acceleration
+        if (inputX != 0) { currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, acceleration); }
+        // deceleration
+        else { currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, deceleration); }
+        // set velocity
+        thisRb.velocity = new Vector2(currentVelocity.x, thisRb.velocity.y); //set velocity
 
     }
 
