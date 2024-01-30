@@ -62,7 +62,7 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float speed;
     public Vector2 currentVelocity { get; set; }
 
-    [SerializeField] public bool isFacingRight { get; set; }
+    public bool isFacingRight { get; set; }
     #endregion
 
     //executed at start of game
