@@ -54,7 +54,7 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float jumpforce;
     [SerializeField] private float higherJumpModifier;
     private float standartJumpGravityScale;
-    private bool isGrounded = false;
+    public bool isGrounded { get; set; }
     [SerializeField] private LayerMask groundMask;
 
     [SerializeField] private float acceleration;
@@ -128,19 +128,19 @@ public class playerMovement : MonoBehaviour
         
         if (!isGrounded)
         {
-            // if in air -> no control over velocity (the players can't fly duh)
-            return;
+            thisRb.AddForce(new Vector2(speed * inputX, 0));
         }
-
-        //get target velocity
-        Vector2 targetVelocity = new Vector2(inputX, thisRb.velocity.y).normalized * speed; //get max vel
-        // acceleration
-        if (inputX != 0) { currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, acceleration); }
-        // deceleration
-        else { currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, deceleration); }
-        // set velocity
-        thisRb.velocity = new Vector2(currentVelocity.x, thisRb.velocity.y); //set velocity
-
+        else
+        {
+            //get target velocity
+            Vector2 targetVelocity = new Vector2(inputX, thisRb.velocity.y).normalized * speed; //get max vel
+            // acceleration
+            if (inputX != 0) { currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, acceleration); }
+            // deceleration
+            else { currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, deceleration); }
+            // set velocity
+            thisRb.velocity = new Vector2(currentVelocity.x, thisRb.velocity.y); //set velocity
+        }
     }
 
     //when touching ground
@@ -166,6 +166,5 @@ public class playerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
-
 
 }

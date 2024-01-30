@@ -8,19 +8,12 @@ public class mapLayerSetter : MonoBehaviour
     //check chatGPT
 
     [SerializeField] private bool isLayerA;
-    [SerializeField] private LayerMask LayerA;
-    [SerializeField] private LayerMask LayerB;
+    [SerializeField] private string layerAName;
+    [SerializeField] private string layerBName;
 
     private void Start()
     {
-        if (isLayerA)
-        {
-            gameObject.layer = LayerA;
-        }
-        else
-        {
-            gameObject.layer = LayerB;
-        }
+        int layerToSet = isLayerA ? LayerMask.NameToLayer(layerAName) : LayerMask.NameToLayer(layerBName);
+        gameObject.layer = layerToSet;
     }
-
 }

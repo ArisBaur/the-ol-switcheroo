@@ -12,14 +12,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject thatPlayer;
     private Transform thisTf;
     private Transform thatTf;
-    private Vector3 currentPos;
     private float currentZoom;
     [SerializeField] private float cameraMoveSpeed;
     [SerializeField] private float cameraZoomSpeed;
     [SerializeField] private float minZoom;
     [SerializeField] private float maxZoom;
 
-
+    private Rigidbody2D rb;
 
 
     void Start()
@@ -27,6 +26,8 @@ public class CameraController : MonoBehaviour
         thisCamera = gameObject;
         thisTf = thisPlayer.GetComponent<Transform>();
         thatTf = thatPlayer.GetComponent<Transform>();
+
+        rb = thisCamera.GetComponent<Rigidbody2D>();
     }
 
     
@@ -42,16 +43,15 @@ public class CameraController : MonoBehaviour
         targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
 
 
-
-        // smooth position change
-        currentPos = Vector3.Lerp(currentPos, targetPoint, cameraMoveSpeed);
-        transform.position = currentPos;
+        // smooth camera pos
+        Vector3 currentPos = rb.position;
+        Vector3 deltaPos = targetPoint - currentPos;
+        rb.AddForce(deltaPos, ForceMode2D.Impulse);
+        rb.velocity *= 0.9f;
+        
         // smooth zoom change
         currentZoom = Mathf.Lerp(currentZoom, targetZoom, cameraZoomSpeed);
         thisCamera.GetComponent<Camera>().orthographicSize = currentZoom;
-
-        
-        
 
     }
 
