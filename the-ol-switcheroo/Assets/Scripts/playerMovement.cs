@@ -44,9 +44,10 @@ public class playerMovement : MonoBehaviour
     #region - my hoaaard
     private GameObject thisPlayer;
     private Rigidbody2D thisRb;
-    [SerializeField] private KeyCode left;
-    [SerializeField] private KeyCode right;
-    [SerializeField] private KeyCode jump;
+    [SerializeField] private bool playerType;
+    private KeyCode left;
+    private KeyCode right;
+    private KeyCode jump;
 
     private float inputX;
 
@@ -67,6 +68,20 @@ public class playerMovement : MonoBehaviour
     //executed at start of game
     void Start()
     {
+        if (playerType)
+        {
+            left = KeyCode.A;
+            right = KeyCode.D;
+            jump = KeyCode.W;
+        }
+        else
+        {
+            left = KeyCode.LeftArrow;
+            right = KeyCode.RightArrow;
+            jump = KeyCode.UpArrow;
+        }
+
+
         thisPlayer = gameObject;
         thisRb = thisPlayer.GetComponent<Rigidbody2D>();
         standartJumpGravityScale = thisRb.gravityScale;

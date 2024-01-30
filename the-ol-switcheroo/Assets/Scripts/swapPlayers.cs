@@ -48,7 +48,6 @@ public class swapPlayers : MonoBehaviour
             thisTf.localScale = thatTf.localScale;
             thisPm.isFacingRight = thatPm.isFacingRight;
 
-            
             thatRb.position = tempPosition;
             thatRb.velocity = tempVelocity;
             thatPm.currentVelocity = tempCurrentVelocity;

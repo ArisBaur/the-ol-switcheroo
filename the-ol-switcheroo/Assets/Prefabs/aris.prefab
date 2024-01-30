@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7478418352482424320}
   - component: {fileID: 5726989852698191342}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1150870176905498226}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.503, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.503, z: -1}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8141387027475314553}
   - component: {fileID: 8447454238074724237}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 4094701320090191403}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.503, z: 0}
+  m_LocalPosition: {x: 0, y: 0.503, z: -1}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 6072933795535888641}
   - component: {fileID: 104567911115509761}
   - component: {fileID: 7165573381586085824}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: aris
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ Transform:
   m_GameObject: {fileID: 5331577603815734910}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: 2.586, y: 1.317, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -226,7 +226,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 238861fd1781cb94a87260f78ea33c14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -248,7 +248,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.23743299, g: 0.03123889, b: 0.509434, a: 1}
+  m_Color: {r: 0.23743299, g: 0.03123889, b: 0.509434, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -377,12 +377,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360433b51c5ae7b4999bc5c85f2f2875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: 276
-  right: 275
-  jump: 273
+  left: 0
+  right: 0
+  jump: 0
   jumpforce: 10
+  higherJumpModifier: 0.75
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  acceleration: 0.25
+  acceleration: 0.0625
+  deceleration: 0.125
   speed: 5
