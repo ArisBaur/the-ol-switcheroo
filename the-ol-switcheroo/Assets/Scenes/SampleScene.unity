@@ -407,7 +407,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 805355400}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: efec04cebba4c644184b0010f6f23008, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -449,7 +449,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: efec04cebba4c644184b0010f6f23008, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -658,7 +658,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1165650320}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: efec04cebba4c644184b0010f6f23008, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -700,7 +700,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: efec04cebba4c644184b0010f6f23008, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1158,6 +1158,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5980804170586949522, guid: 46239eea868530741ae32f92be560cc3, type: 3}
+      propertyPath: layerAMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: f1e47cba3c42ac24e9b7ede5b1f2e4d1, type: 2}
+    - target: {fileID: 5980804170586949522, guid: 46239eea868530741ae32f92be560cc3, type: 3}
+      propertyPath: layerBMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 5c512c2fb725ba840b323fa091425a7c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

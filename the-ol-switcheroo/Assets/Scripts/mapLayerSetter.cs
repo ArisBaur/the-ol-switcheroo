@@ -10,10 +10,15 @@ public class mapLayerSetter : MonoBehaviour
     [SerializeField] private bool isLayerA;
     [SerializeField] private string layerAName;
     [SerializeField] private string layerBName;
+    [SerializeField] private Material layerAMaterial;
+    [SerializeField] private Material layerBMaterial;
 
-    private void Start()
+    private void Update()
     {
         int layerToSet = isLayerA ? LayerMask.NameToLayer(layerAName) : LayerMask.NameToLayer(layerBName);
         gameObject.layer = layerToSet;
+        
+        Material matToSet = isLayerA ? layerAMaterial : layerBMaterial;
+        gameObject.GetComponent<SpriteRenderer>().material = matToSet;
     }
 }
