@@ -123,24 +123,8 @@ public class playerMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
-        //only when in contact with the ground can you change your velocity
-        
-        
-        if (!isGrounded)
-        {
-            thisRb.AddForce(new Vector2(speed * inputX, 0));
-        }
-        else
-        {
-            //get target velocity
-            Vector2 targetVelocity = new Vector2(inputX, thisRb.velocity.y).normalized * speed; //get max vel
-            // acceleration
-            if (inputX != 0) { currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, acceleration); }
-            // deceleration
-            else { currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, deceleration); }
-            // set velocity
-            thisRb.velocity = new Vector2(currentVelocity.x, thisRb.velocity.y); //set velocity
-        }
+        thisRb.velocity = new Vector2(speed * inputX, thisRb.velocity.y);
+
     }
 
     //when touching ground

@@ -224,17 +224,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79d366d525816cf45aa9cd0be0480979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   thisPlayer: {fileID: 1165650320}
   thatPlayer: {fileID: 805355400}
-  cameraMoveSpeed: 0.05
+  cameraMoveSpeed: 0.5
   cameraZoomSpeed: 0.05
-  minZoom: 3.5
-  maxZoom: 10
+  minZoom: 2.5
+  maxZoom: 5
 --- !u!50 &519420034
 Rigidbody2D:
   serializedVersion: 4

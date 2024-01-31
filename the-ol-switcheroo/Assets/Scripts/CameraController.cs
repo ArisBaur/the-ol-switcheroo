@@ -46,7 +46,7 @@ public class CameraController : MonoBehaviour
         // smooth camera pos
         Vector3 currentPos = rb.position;
         Vector3 deltaPos = targetPoint - currentPos;
-        rb.AddForce(deltaPos, ForceMode2D.Impulse);
+        rb.AddForce(deltaPos * cameraMoveSpeed, ForceMode2D.Impulse);
         rb.velocity *= 0.9f;
         
         // smooth zoom change
