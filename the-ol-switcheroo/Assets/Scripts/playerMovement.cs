@@ -44,7 +44,7 @@ public class playerMovement : MonoBehaviour
     #region - my hoaaard
     private GameObject thisPlayer;
     private Rigidbody2D thisRb;
-    [SerializeField] private bool playerType;
+    [SerializeField] private bool isPlayerA;
     private KeyCode left;
     private KeyCode right;
     private KeyCode jump;
@@ -68,7 +68,7 @@ public class playerMovement : MonoBehaviour
     //executed at start of game
     void Start()
     {
-        if (playerType)
+        if (isPlayerA)
         {
             left = KeyCode.A;
             right = KeyCode.D;
