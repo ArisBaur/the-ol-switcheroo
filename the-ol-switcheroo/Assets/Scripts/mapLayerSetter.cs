@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class mapLayerSetter : MonoBehaviour
 {
 
@@ -15,7 +16,7 @@ public class mapLayerSetter : MonoBehaviour
 
     private void Update()
     {
-        int layerToSet = isLayerA ? LayerMask.NameToLayer(layerAName) : LayerMask.NameToLayer(layerBName);
+        int layerToSet = (isLayerA ? LayerMask.NameToLayer(layerAName) : LayerMask.NameToLayer(layerBName)) % 31;
         gameObject.layer = layerToSet;
         
         Material matToSet = isLayerA ? layerAMaterial : layerBMaterial;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7591291707213330836}
   - component: {fileID: 9013439614622060286}
   - component: {fileID: 2736627580230726778}
-  - component: {fileID: 4518961028438009482}
+  - component: {fileID: 1950435499347158396}
   - component: {fileID: 1391566424852259837}
   - component: {fileID: 7496719622506581178}
   - component: {fileID: 7900711708335489842}
@@ -117,8 +117,8 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &4518961028438009482
-CapsuleCollider2D:
+--- !u!58 &1950435499347158396
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -126,7 +126,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 7865916236377905972}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: efec04cebba4c644184b0010f6f23008, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -150,8 +150,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
-  m_Direction: 0
+  serializedVersion: 2
+  m_Radius: 0.53333336
 --- !u!61 &1391566424852259837
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360433b51c5ae7b4999bc5c85f2f2875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerType: 1
+  isPlayerA: 1
   jumpforce: 10
   higherJumpModifier: 0.75
   groundMask:
