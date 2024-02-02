@@ -1,25 +1,22 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class finishLevel : MonoBehaviour
+public class FinishLevel : MonoBehaviour
 {
-
     [SerializeField] private string nextLevel;
     [SerializeField] private LayerMask playerMask;
-    private finishLevel[] goals;
-    private finishLevel otherGoal;
-    public bool isReached = false;
-    
+    [SerializeField] private float nextLEvelDelay;
+
+    private FinishLevel otherGoal;
+    private bool isReached = false;
 
     private void Start()
     {
-        goals = FindObjectsOfType<finishLevel>();
+        FinishLevel[] goals = FindObjectsOfType<FinishLevel>();
 
         // Find the other goal that is not the current one
-        foreach (finishLevel goal in goals)
+        foreach (FinishLevel goal in goals)
         {
             // Check if the goal is different from the current one
             if (goal != this)
@@ -34,7 +31,6 @@ public class finishLevel : MonoBehaviour
             Debug.LogError("Unable to find the other goal!");
         }
     }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -56,20 +52,15 @@ public class finishLevel : MonoBehaviour
 
     private void Update()
     {
-        if (otherGoal.isReached && this.isReached)
+        if (otherGoal.isReached && isReached)
         {
             StartCoroutine(LoadNextLevel());
         }
     }
 
-
-
-    IEnumerator LoadNextLevel()
+    private IEnumerator LoadNextLevel()
     {
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(5);
-
+        yield return new WaitForSeconds(nextLEvelDelay);
         SceneManager.LoadScene(nextLevel);
     }
-
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -58,8 +59,9 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
 
     [SerializeField] private float acceleration;
-    [SerializeField] private float deceleration;
+    [SerializeField] private float airControll;
     [SerializeField] private float speed;
+    private float currentSpeed;
     public Vector2 currentVelocity { get; set; }
 
     public bool isFacingRight { get; set; }
@@ -122,8 +124,19 @@ public class playerMovement : MonoBehaviour
     //executed at 60fps
     private void FixedUpdate()
     {
+        
+        if (isGrounded)
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, speed * inputX, acceleration);
+        }
+        else
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, speed * inputX, acceleration * airControll);
+        }
 
-        thisRb.velocity = new Vector2(speed * inputX, thisRb.velocity.y);
+        thisRb.velocity = new Vector2(currentSpeed, thisRb.velocity.y);
+
+
 
     }
 
