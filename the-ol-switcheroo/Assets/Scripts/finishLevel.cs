@@ -12,7 +12,10 @@ public class finishLevel : MonoBehaviour
     private finishLevel[] goals;
     private finishLevel otherGoal;
     public bool isReached = false;
-    
+    private bool loadingNextLevel = false;
+    private Coroutine nextLevelCoroutine;
+
+
 
     private void Start()
     {
@@ -56,11 +59,29 @@ public class finishLevel : MonoBehaviour
 
     private void Update()
     {
-        if (otherGoal.isReached && this.isReached)
+        if (otherGoal.isReached && isReached)
         {
-            StartCoroutine(LoadNextLevel());
+            // Check if the coroutine is already running
+            if (!loadingNextLevel)
+            {
+                // Start the coroutine to load the next level
+                nextLevelCoroutine = StartCoroutine(LoadNextLevel());
+                loadingNextLevel = true;
+                Debug.Log("Start transferring");
+            }
+        }
+        else
+        {
+            // If the conditions are no longer met, cancel the coroutine if it's running
+            if (loadingNextLevel)
+            {
+                StopCoroutine(nextLevelCoroutine);
+                loadingNextLevel = false;
+                Debug.Log("Stopped");
+            }
         }
     }
+
 
 
 
