@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -43,33 +44,43 @@ public class playerMovement : MonoBehaviour
 {
     // my hoard of variables
     #region - my hoaaard
+    //general
     private GameObject thisPlayer;
     private Rigidbody2D thisRb;
     [SerializeField] private bool isPlayerA;
+
+    //input
     private KeyCode left;
     private KeyCode right;
     private KeyCode jump;
-
     private float inputX;
 
+
+    //jumping
     [SerializeField] private float jumpforce;
     [SerializeField] private float higherJumpModifier;
     private float standartJumpGravityScale;
     public bool isGrounded { get; set; }
     [SerializeField] private LayerMask groundMask;
 
+    //x movement
     [SerializeField] private float acceleration;
     [SerializeField] private float airControll;
     [SerializeField] private float speed;
     private float currentSpeed;
     public Vector2 currentVelocity { get; set; }
 
+    //swapping
     public bool isFacingRight { get; set; }
+
+    //animation
+    private Animator anim;
     #endregion
 
     //executed at start of game
     void Start()
     {
+
         if (isPlayerA)
         {
             left = KeyCode.A;
@@ -87,6 +98,7 @@ public class playerMovement : MonoBehaviour
         thisPlayer = gameObject;
         thisRb = thisPlayer.GetComponent<Rigidbody2D>();
         standartJumpGravityScale = thisRb.gravityScale;
+        anim = GetComponent<Animator>();
     }
 
     //executed every frame
@@ -118,6 +130,11 @@ public class playerMovement : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
+
+
+        anim.SetFloat("speed", Mathf.Abs(thisRb.velocity.x) / 2); //divided by 2 -> looks better? idk why tho
+        anim.SetBool("isJumping", (thisRb.velocity.y > 0f)); //if ur jumping up, ur y vel is positive
+        anim.SetBool("isFalling", (thisRb.velocity.y < 0f)); //vice versa
 
     }
 
