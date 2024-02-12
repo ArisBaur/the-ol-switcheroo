@@ -9,7 +9,7 @@ public class ButtonController : MonoBehaviour
     [SerializeField] private LayerMask playerMask;
     private bool playerInReach;
     private KeyCode activationKey;
-
+    public bool isPressed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,7 @@ public class ButtonController : MonoBehaviour
     {
         if (playerInReach && Input.GetKeyDown(activationKey))
         {
-            Debug.Log("Button pressed");
+            isPressed = !isPressed;
         }
     }
 
