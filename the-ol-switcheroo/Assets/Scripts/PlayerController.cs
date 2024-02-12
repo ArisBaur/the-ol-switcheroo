@@ -133,8 +133,8 @@ public class playerMovement : MonoBehaviour
 
 
         anim.SetFloat("speed", Mathf.Abs(thisRb.velocity.x) / 2); //divided by 2 -> looks better? idk why tho
-        anim.SetBool("isJumping", (thisRb.velocity.y > 0f)); //if ur jumping up, ur y vel is positive
-        anim.SetBool("isFalling", (thisRb.velocity.y < 0f)); //vice versa
+        anim.SetBool("isJumping", (thisRb.velocity.y > 0f && !isGrounded)); //if ur jumping up, ur y vel is positive, also u aint grounded
+        anim.SetBool("isFalling", (thisRb.velocity.y < 0f && !isGrounded)); //vice versa
 
     }
 

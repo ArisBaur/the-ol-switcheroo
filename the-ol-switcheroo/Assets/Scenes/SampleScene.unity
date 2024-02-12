@@ -944,6 +944,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gate
       objectReference: {fileID: 0}
+    - target: {fileID: 2436050595069015625, guid: 46239eea868530741ae32f92be560cc3, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: efec04cebba4c644184b0010f6f23008, type: 2}
     - target: {fileID: 3527242032917485652, guid: 46239eea868530741ae32f92be560cc3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.9
