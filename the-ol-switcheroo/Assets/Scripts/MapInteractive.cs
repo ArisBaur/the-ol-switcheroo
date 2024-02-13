@@ -41,13 +41,13 @@ public class MapInteractive : MonoBehaviour
         if (isOpen && isClosing)
         {
             Debug.Log("Ich schließe mich");
-            StartCoroutine(MoveCoroutine(transform.position, new Vector3(transform.position.x + movementVector.x, transform.position.y + movementVector.y, 0)));
+            StartCoroutine(MoveCoroutine(transform.position, new Vector3(transform.position.x - movementVector.x, transform.position.y - movementVector.y, 0)));
             isOpen = false;
         }
         if (!isOpen && !isClosing)
         {
             Debug.Log("Ich öffne mich");
-            StartCoroutine(MoveCoroutine(transform.position, new Vector3(transform.position.x - movementVector.x, transform.position.y - movementVector.y, 0)));
+            StartCoroutine(MoveCoroutine(transform.position, new Vector3(transform.position.x + movementVector.x, transform.position.y + movementVector.y, 0)));
             isOpen = true;
         }
     }

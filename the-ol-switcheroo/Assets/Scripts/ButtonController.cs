@@ -31,9 +31,9 @@ public class ButtonController : MonoBehaviour
     {
         if (playerInReach && Input.GetKeyDown(activationKey))
         {
-
             foreach (var gate in openCloseGates)
             {
+                if (gate == null) { continue; }
                 if (gate.isOpen)
                 {
                     gate.Close();
@@ -45,6 +45,7 @@ public class ButtonController : MonoBehaviour
             }
             foreach (var gate in layerGates)
             {
+                if (gate == null) { continue; }
                 gate.ChangeLayer();
             }
         }
