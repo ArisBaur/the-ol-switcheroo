@@ -228,10 +228,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e531c94fdf82d48a14ad324ab6bba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRotate: 0
   _isLayerA: 0
-  duration: 0
-  movementVector: {x: 0, y: -10}
+  duration: 10
+  movementVector: {x: 1, y: 2}
+  rotateDegree: 0
 --- !u!61 &282227443
 BoxCollider2D:
   m_ObjectHideFlags: 0

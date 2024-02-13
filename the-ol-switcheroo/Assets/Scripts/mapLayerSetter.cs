@@ -6,17 +6,15 @@ using UnityEngine;
 public class mapLayerSetter : MonoBehaviour
 {
 
-    //check chatGPT
-
     [SerializeField] private bool isLayerA;
-    [SerializeField] private string layerAName;
-    [SerializeField] private string layerBName;
     [SerializeField] private Material layerAMaterial;
     [SerializeField] private Material layerBMaterial;
+    private string layerAName = "MapA";
+    private string layerBName = "MapB";
 
     private void Update()
     {
-        int layerToSet = (isLayerA ? LayerMask.NameToLayer(layerAName) : LayerMask.NameToLayer(layerBName)) % 31;
+        int layerToSet = (isLayerA ? LayerMask.NameToLayer(layerAName) % 31 : LayerMask.NameToLayer(layerBName)) % 31;
         gameObject.layer = layerToSet;
         
         Material matToSet = isLayerA ? layerAMaterial : layerBMaterial;
