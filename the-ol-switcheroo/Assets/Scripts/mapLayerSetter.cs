@@ -22,4 +22,10 @@ public class mapLayerSetter : MonoBehaviour
         Material matToSet = isLayerA ? layerAMaterial : layerBMaterial;
         gameObject.GetComponent<SpriteRenderer>().material = matToSet;
     }
+
+    public void ChangeLayer()
+    {
+        isLayerA = !isLayerA;
+    }
+
 }
