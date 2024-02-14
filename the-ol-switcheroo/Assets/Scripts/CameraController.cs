@@ -8,6 +8,7 @@ public class CameraController : MonoBehaviour
 {
 
     private GameObject thisCamera;
+    [SerializeField] private float yPos;
     [SerializeField] private GameObject thisPlayer;
     [SerializeField] private GameObject thatPlayer;
     private Transform thisTf;
@@ -48,7 +49,7 @@ public class CameraController : MonoBehaviour
 
         // Calculate target midpoint between players
         float xPos = (thisTf.position.x + thatTf.position.x) /2f;
-        Vector3 targetPoint = new Vector3(xPos, 1, -10);
+        Vector3 targetPoint = new Vector3(xPos, yPos, -10);
 
         // zoom is 2\log_{2}\left(players distance\right)
         float targetZoom = 2f*Mathf.Log(Vector3.Distance(thisTf.position, thatTf.position), 2);

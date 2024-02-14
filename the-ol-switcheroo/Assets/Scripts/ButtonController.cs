@@ -5,11 +5,13 @@ using UnityEngine;
 public class ButtonController : MonoBehaviour
 {
 
+    [SerializeField] MapInteractive[] openCloseGates;
+    [SerializeField] mapLayerSetter[] layerGates;
     [SerializeField] private bool isLayerA;
     [SerializeField] private LayerMask playerMask;
     private bool playerInReach;
     private KeyCode activationKey;
-    public bool isPressed = false;
+    //private bool isPressed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +31,23 @@ public class ButtonController : MonoBehaviour
     {
         if (playerInReach && Input.GetKeyDown(activationKey))
         {
-            isPressed = !isPressed;
+            foreach (var gate in openCloseGates)
+            {
+                if (gate == null) { continue; }
+                if (gate.isOpen)
+                {
+                    gate.Close();
+                }
+                else
+                {
+                    gate.Open();
+                }
+            }
+            foreach (var gate in layerGates)
+            {
+                if (gate == null) { continue; }
+                gate.ChangeLayer();
+            }
         }
     }
 

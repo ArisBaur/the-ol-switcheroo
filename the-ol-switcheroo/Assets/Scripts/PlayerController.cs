@@ -7,13 +7,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-/* TODO: work on swap players
- * wanted to put code from swap players.cs here
- * because i think i need to edit currentvelocity instead of rb.velocity
- * jumping with horzontal movement bug
- * 
- * 
-*/
+
 
 
 
@@ -63,24 +57,26 @@ public class playerMovement : MonoBehaviour
     public bool isGrounded { get; set; }
     [SerializeField] private LayerMask groundMask;
 
+
     //x movement
     [SerializeField] private float acceleration;
     [SerializeField] private float airControll;
     [SerializeField] private float speed;
-    private float currentSpeed;
-    public Vector2 currentVelocity { get; set; }
+    public float currentSpeed;
+
 
     //swapping
     public bool isFacingRight { get; set; }
+
 
     //animation
     private Animator anim;
     #endregion
 
-    //executed at start of game
+
     void Start()
     {
-
+        //set corresponding input keys
         if (isPlayerA)
         {
             left = KeyCode.A;
@@ -94,14 +90,13 @@ public class playerMovement : MonoBehaviour
             jump = KeyCode.UpArrow;
         }
 
-
+        //get components
         thisPlayer = gameObject;
         thisRb = thisPlayer.GetComponent<Rigidbody2D>();
         standartJumpGravityScale = thisRb.gravityScale;
         anim = GetComponent<Animator>();
     }
 
-    //executed every frame
     void Update()
     {
         //left right movement
@@ -131,21 +126,22 @@ public class playerMovement : MonoBehaviour
             transform.localScale = localScale;
         }
 
-
+        //set animation variables -> to change the different animations
         anim.SetFloat("speed", Mathf.Abs(thisRb.velocity.x) / 2); //divided by 2 -> looks better? idk why tho
         anim.SetBool("isJumping", (thisRb.velocity.y > 0f && !isGrounded)); //if ur jumping up, ur y vel is positive, also u aint grounded
         anim.SetBool("isFalling", (thisRb.velocity.y < 0f && !isGrounded)); //vice versa
 
     }
 
-    //executed at 60fps
+
     private void FixedUpdate()
     {
-        
+        //if grounded -> full controll
         if (isGrounded)
         {
             currentSpeed = Mathf.Lerp(currentSpeed, speed * inputX, acceleration);
         }
+        //air controll is slightly less
         else
         {
             currentSpeed = Mathf.Lerp(currentSpeed, speed * inputX, acceleration * airControll);
@@ -153,19 +149,14 @@ public class playerMovement : MonoBehaviour
 
         thisRb.velocity = new Vector2(currentSpeed, thisRb.velocity.y);
 
-
-
     }
 
     //when touching ground
     private void OnTriggerEnter2D(Collider2D other)
     {
+        //https://www.youtube.com/watch?v=VsmgZmsPV6w
         LayerMask colliderLayer = other.gameObject.layer;
         if ((groundMask & (1 << colliderLayer)) != 0)
-        //check if the layer of the collider is in the layermask which counts as ground
-        //idk how it works tho ;-;
-        //i tried but its a bit weird
-        //ik that those are bitwise operations, thats it
         {
             isGrounded = true;
         }

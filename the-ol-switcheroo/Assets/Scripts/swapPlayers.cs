@@ -16,7 +16,7 @@ public class swapPlayers : MonoBehaviour
 
     [SerializeField] private KeyCode switchKey;
 
-    // Start is called before the first frame update
+    //get components
     void Start()
     {
         thisRb = thisPlayer.GetComponent<Rigidbody2D>();
@@ -27,7 +27,7 @@ public class swapPlayers : MonoBehaviour
         thatTf = thatPlayer.GetComponent<Transform>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (Input.GetKeyDown(switchKey)) {
@@ -38,20 +38,20 @@ public class swapPlayers : MonoBehaviour
             // this goes for the position, current rb xy velocity, movement velocity of the player (for the ground) and the flip
             Vector2 tempPosition = thisRb.position;
             Vector2 tempVelocity = thisRb.velocity;
-            Vector2 tempCurrentVelocity = thisPm.currentVelocity;
             Vector3 tempLocalScale = thisTf.localScale;
+            float tempSpeed = thisPm.currentSpeed;
             bool tempisFacingRight = thisPm.isFacingRight;
 
             thisRb.position = thatRb.position;
             thisRb.velocity = thatRb.velocity;
-            thisPm.currentVelocity = thatPm.currentVelocity;
             thisTf.localScale = thatTf.localScale;
+            thisPm.currentSpeed = thatPm.currentSpeed;
             thisPm.isFacingRight = thatPm.isFacingRight;
 
             thatRb.position = tempPosition;
             thatRb.velocity = tempVelocity;
-            thatPm.currentVelocity = tempCurrentVelocity;
             thatTf.localScale = tempLocalScale;
+            thatPm.currentSpeed = tempSpeed;
             thatPm.isFacingRight = tempisFacingRight;
         }
     }
