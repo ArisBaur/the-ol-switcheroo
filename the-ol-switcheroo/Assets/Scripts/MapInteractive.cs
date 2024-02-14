@@ -15,10 +15,14 @@ public class MapInteractive : MonoBehaviour
 
     private Vector3 actualMovementVector;
 
+    private Vector3 openPos;
+    private Vector3 closePos;
+
 
     private void Start()
     {
-        actualMovementVector = new Vector3(movementVector.x, movementVector.y, 0);
+        openPos = transform.position + new Vector3(movementVector.x, movementVector.y, 0);
+        closePos = transform.position;
     }
 
     public void Open()
@@ -39,42 +43,52 @@ public class MapInteractive : MonoBehaviour
         if (isCoroutineRunning) { return; }
         if (isOpen && isClosing)
         {   //close
-            StartCoroutine(MoveCoroutine(transform.position - actualMovementVector)); //pass current transform instead of using it in the function
+            StartCoroutine(MoveCoroutine(openPos, closePos)); //pass current transform instead of using it in the function
             isOpen = false;
         }
         if (!isOpen && !isClosing)
         {   //open
-            StartCoroutine(MoveCoroutine(transform.position + actualMovementVector)); //because otherwise the gate chases itself
+            StartCoroutine(MoveCoroutine(closePos, openPos)); //because otherwise the gate chases itself
             isOpen = true;
         }
     }
 
 
-    IEnumerator MoveCoroutine(Vector3 endPos)
+    IEnumerator MoveCoroutine(Vector3 A, Vector3 B)
     {
         isCoroutineRunning = true;
 
-        float elapsedTime = 0f;
+        float runningTime = 0f;
+        Vector3 startingPos = transform.position;
 
-        while (elapsedTime < duration)
+        while (runningTime < duration)
         {
-            // Calculate the interpolation factor
-            float t = elapsedTime / duration;
+            // how this iteration should take
+            float t = SmoothStep(runningTime / duration);
+            Debug.Log(t);
 
-            // Interpolate the position gradually
-            transform.position = Vector3.Lerp(transform.position, endPos, t);
+            // Interpolate position between fromPosition and toPosition using t
+            transform.position = Vector3.Lerp(A, B, t);
 
-            // Increment the elapsed time
-            elapsedTime += Time.deltaTime;
+            // Increment elapsed time
+            runningTime += Time.deltaTime;
 
             // Wait for the next frame
             yield return null;
         }
 
         // Ensure the final position is reached
-        transform.position = endPos;
+        transform.position = B;
 
         isCoroutineRunning = false;
     }
+
+
+
+    float SmoothStep(float t)
+    {
+        return t * t * (3f - 2f * t);
+    }
+
 
 }
