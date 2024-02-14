@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isLayerA: 0
-  duration: 10
+  duration: 2
   movementVector: {x: 1, y: 2}
   rotateDegree: 0
 --- !u!61 &282227443

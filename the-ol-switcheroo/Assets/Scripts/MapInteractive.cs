@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class MapInteractive : MonoBehaviour
 {
     [SerializeField] private bool _isLayerA;
-    [SerializeField] private float duration;
+    [SerializeField][Min(0.1f)] private float duration;
     [SerializeField] private Vector2 movementVector;
     [SerializeField][Range(0, 360)] private float rotateDegree;
     public bool isOpen { get; set; } = false;  //if its open
@@ -17,12 +17,15 @@ public class MapInteractive : MonoBehaviour
 
     private Vector3 openPos;
     private Vector3 closePos;
-
+    private Quaternion openRotation;
+    private Quaternion closeRotation;
 
     private void Start()
     {
         openPos = transform.position + new Vector3(movementVector.x, movementVector.y, 0);
         closePos = transform.position;
+        openRotation = transform.rotation + Quaternion.AngleAxis(rotateDegree, Vector3.forward);
+        closeRotation = transform.rotation;
     }
 
     public void Open()
@@ -54,7 +57,7 @@ public class MapInteractive : MonoBehaviour
     }
 
 
-    IEnumerator MoveCoroutine(Vector3 A, Vector3 B)
+    IEnumerator MoveCoroutine(Vector3 A, Vector3 B, float a, float b)
     {
         isCoroutineRunning = true;
 
@@ -64,7 +67,7 @@ public class MapInteractive : MonoBehaviour
         while (runningTime < duration)
         {
             // how this iteration should take
-            float t = SmoothStep(runningTime / duration);
+            float t = runningTime / duration;
             Debug.Log(t);
 
             // Interpolate position between fromPosition and toPosition using t
@@ -77,18 +80,12 @@ public class MapInteractive : MonoBehaviour
             yield return null;
         }
 
-        // Ensure the final position is reached
-        transform.position = B;
 
+        transform.position = B;
         isCoroutineRunning = false;
     }
 
 
-
-    float SmoothStep(float t)
-    {
-        return t * t * (3f - 2f * t);
-    }
 
 
 }
