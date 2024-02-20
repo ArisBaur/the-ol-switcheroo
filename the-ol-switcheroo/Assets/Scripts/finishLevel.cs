@@ -11,11 +11,11 @@ public class finishLevel : MonoBehaviour
     [SerializeField] private LayerMask playerMask;
     private finishLevel[] goals;
     private finishLevel otherGoal;
-    public bool isReached = false;
+    [HideInInspector]public bool isReached = false;
     private bool loadingNextLevel = false;
     private Coroutine nextLevelCoroutine;
 
-
+    
 
     private void Start()
     {

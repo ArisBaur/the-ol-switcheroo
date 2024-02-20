@@ -8,7 +8,7 @@ public class MapInteractive : MonoBehaviour
     [SerializeField] private bool _isLayerA;
     [SerializeField][Min(0.1f)] private float duration;
     [SerializeField] private Vector2 movementVector;
-    [SerializeField][Range(0, 360)] private float rotateDegree;
+    [SerializeField][Range(-360, 360)] private float rotateDegree;
     public bool isOpen { get; set; } = false;  //if its open
     public bool isClosing { get; set; } = true;// if it should close
     private bool isCoroutineRunning = false; //whether coroutin is active (prevents spamming)
