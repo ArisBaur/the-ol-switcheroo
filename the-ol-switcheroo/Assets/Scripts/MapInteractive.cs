@@ -24,7 +24,7 @@ public class MapInteractive : MonoBehaviour
     {
         openPos = transform.position + new Vector3(movementVector.x, movementVector.y, 0);
         closePos = transform.position;
-        openRotation = transform.rotation + Quaternion.AngleAxis(rotateDegree, Vector3.forward);
+        openRotation = transform.rotation * Quaternion.AngleAxis(rotateDegree, Vector3.forward);
         closeRotation = transform.rotation;
     }
 
@@ -46,18 +46,18 @@ public class MapInteractive : MonoBehaviour
         if (isCoroutineRunning) { return; }
         if (isOpen && isClosing)
         {   //close
-            StartCoroutine(MoveCoroutine(openPos, closePos)); //pass current transform instead of using it in the function
+            StartCoroutine(MoveCoroutine(openPos, closePos, openRotation, closeRotation)); //pass current transform instead of using it in the function
             isOpen = false;
         }
         if (!isOpen && !isClosing)
         {   //open
-            StartCoroutine(MoveCoroutine(closePos, openPos)); //because otherwise the gate chases itself
+            StartCoroutine(MoveCoroutine(closePos, openPos, closeRotation, openRotation)); //because otherwise the gate chases itself
             isOpen = true;
         }
     }
 
 
-    IEnumerator MoveCoroutine(Vector3 A, Vector3 B, float a, float b)
+    IEnumerator MoveCoroutine(Vector3 A, Vector3 B, Quaternion a, Quaternion b)
     {
         isCoroutineRunning = true;
 
@@ -66,22 +66,23 @@ public class MapInteractive : MonoBehaviour
 
         while (runningTime < duration)
         {
-            // how this iteration should take
+            //how long this iteration should take
             float t = runningTime / duration;
-            Debug.Log(t);
 
-            // Interpolate position between fromPosition and toPosition using t
+            //linear interpolation from A to B using timesteps t
             transform.position = Vector3.Lerp(A, B, t);
+            transform.rotation = Quaternion.Lerp(a, b, t);
 
-            // Increment elapsed time
+            //increase time
             runningTime += Time.deltaTime;
 
-            // Wait for the next frame
+            //end this iteration and wait for the next one
             yield return null;
         }
 
 
         transform.position = B;
+        transform.rotation = b;
         isCoroutineRunning = false;
     }
 

@@ -231,7 +231,7 @@ MonoBehaviour:
   _isLayerA: 0
   duration: 2
   movementVector: {x: 1, y: 2}
-  rotateDegree: 0
+  rotateDegree: 90
 --- !u!61 &282227443
 BoxCollider2D:
   m_ObjectHideFlags: 0
