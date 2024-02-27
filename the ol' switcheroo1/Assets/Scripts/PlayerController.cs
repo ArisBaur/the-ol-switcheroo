@@ -71,6 +71,10 @@ public class playerMovement : MonoBehaviour
 
     //animation
     private Animator anim;
+
+    //shader
+    private int shaderThreshold = Shader.PropertyToID("_stepThreshold");
+    private Material material;
     #endregion
 
 
@@ -95,6 +99,7 @@ public class playerMovement : MonoBehaviour
         thisRb = thisPlayer.GetComponent<Rigidbody2D>();
         standartJumpGravityScale = thisRb.gravityScale;
         anim = GetComponent<Animator>();
+        material = GetComponent<SpriteRenderer>().material;
     }
 
     void Update()
@@ -171,5 +176,20 @@ public class playerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
+
+
+
+    public void Dissapear()
+    {
+        float value = 1;
+        material.SetFloat(shaderThreshold, value);
+        for (int i = 0; i < 100; i++)
+        {
+            value -= 0.01f;
+            material.SetFloat(shaderThreshold, value);
+        }
+    }
+
+
 
 }

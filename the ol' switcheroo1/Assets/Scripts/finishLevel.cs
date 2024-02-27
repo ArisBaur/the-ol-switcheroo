@@ -14,8 +14,11 @@ public class finishLevel : MonoBehaviour
     [HideInInspector]public bool isReached = false;
     private bool loadingNextLevel = false;
     private Coroutine nextLevelCoroutine;
+    [SerializeField] private playerMovement playerA;
+    [SerializeField] private playerMovement playerB;
 
-    
+
+
 
     private void Start()
     {
@@ -90,6 +93,8 @@ public class finishLevel : MonoBehaviour
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(5);
 
+        playerA.Dissapear();
+        playerB.Dissapear();
         SceneManager.LoadScene(nextLevel);
     }
 
