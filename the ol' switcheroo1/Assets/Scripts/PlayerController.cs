@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 
 
@@ -98,8 +99,8 @@ public class playerMovement : MonoBehaviour
         thisPlayer = gameObject;
         thisRb = thisPlayer.GetComponent<Rigidbody2D>();
         standartJumpGravityScale = thisRb.gravityScale;
-        anim = GetComponent<Animator>();
-        material = GetComponent<SpriteRenderer>().material;
+        anim = thisPlayer.GetComponent<Animator>();
+        material = thisPlayer.GetComponent<SpriteRenderer>().material;
     }
 
     void Update()
@@ -179,16 +180,46 @@ public class playerMovement : MonoBehaviour
 
 
 
-    public void Dissapear()
+    public void Dissapear(float duration)
     {
-        float value = 1;
-        material.SetFloat(shaderThreshold, value);
-        for (int i = 0; i < 100; i++)
-        {
-            value -= 0.01f;
-            material.SetFloat(shaderThreshold, value);
-        }
+        StartCoroutine(DissapearCoroutine(0f, duration));
     }
+    public void Appear(float duration)
+    {
+        StartCoroutine(DissapearCoroutine(1f, duration));
+    }
+
+
+    IEnumerator DissapearCoroutine(float targetVisibility, float duration)
+    {
+        float elapsedTime = 0f;
+        float currentVisibility = material.GetFloat(shaderThreshold);
+        Debug.Log($"current visibility: {currentVisibility}");
+
+        while (elapsedTime < duration)
+        {
+            // Calculate the interpolation parameter based on elapsed time and duration
+            float t = elapsedTime / duration;
+
+            // Interpolate visibility between current and target values
+            float visibility = Mathf.Lerp(currentVisibility, targetVisibility, t);
+
+            // Update the material's visibility
+            material.SetFloat(shaderThreshold, visibility);
+
+            // Increment elapsed time
+            elapsedTime += Time.deltaTime;
+
+            // Wait for the next frame
+            yield return null;
+        }
+
+        // Ensure the final visibility is set to the target value
+        material.SetFloat(shaderThreshold, targetVisibility);
+
+        Debug.Log("Into the abyss!");
+    }
+
 
 
 

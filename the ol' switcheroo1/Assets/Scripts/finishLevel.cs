@@ -18,10 +18,18 @@ public class finishLevel : MonoBehaviour
     [SerializeField] private playerMovement playerB;
 
 
+    [SerializeField] private float waitTime1;
+    [SerializeField] private float playerFadeTime;
+    [SerializeField] private float waitTime2;
+
+
 
 
     private void Start()
     {
+        waitTime2 += playerFadeTime;
+
+
         goals = FindObjectsOfType<finishLevel>();
 
         // Find the other goal that is not the current one
@@ -90,11 +98,17 @@ public class finishLevel : MonoBehaviour
 
     IEnumerator LoadNextLevel()
     {
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(5);
+        // Wait for 3 seconds
+        yield return new WaitForSeconds(waitTime1);
 
-        playerA.Dissapear();
-        playerB.Dissapear();
+        // Dissapear the players
+        playerA.Dissapear(playerFadeTime);
+        playerB.Dissapear(playerFadeTime);
+
+        // Wait for 2 seconds (5 - 3 = 2 seconds)
+        yield return new WaitForSeconds(waitTime2);
+
+        // Load the next level
         SceneManager.LoadScene(nextLevel);
     }
 
