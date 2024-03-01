@@ -40,6 +40,7 @@ public class playerMovement : MonoBehaviour
     // my hoard of variables
     #region - my hoaaard
     //general
+    public bool scriptDisabled { get; set; }
     private GameObject thisPlayer;
     private Rigidbody2D thisRb;
     [SerializeField] private bool isPlayerA;
@@ -142,6 +143,8 @@ public class playerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (scriptDisabled) { return; }
+
         //if grounded -> full controll
         if (isGrounded)
         {

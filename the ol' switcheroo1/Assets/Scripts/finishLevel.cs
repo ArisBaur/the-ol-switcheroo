@@ -104,6 +104,9 @@ public class finishLevel : MonoBehaviour
         // Dissapear the players
         playerA.Dissapear(playerFadeTime);
         playerB.Dissapear(playerFadeTime);
+        playerA.scriptDisabled = true;
+        playerB.scriptDisabled = true;
+
 
         // Wait for 2 seconds (5 - 3 = 2 seconds)
         yield return new WaitForSeconds(waitTime2);
