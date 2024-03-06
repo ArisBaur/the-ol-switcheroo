@@ -54,7 +54,8 @@ Material:
     - _Strength_Texture: 0
     - _Texture_Rotate_Speed: 5
     - _Texture_Speed: 0
-    - _Wave_coefficient: 0.0625
+    - _Wave_coefficient: 5
+    - _screen_space_coefficient: 0.156
     - _spinSpeed: 0.44
     - _temp: 5
     m_Colors:

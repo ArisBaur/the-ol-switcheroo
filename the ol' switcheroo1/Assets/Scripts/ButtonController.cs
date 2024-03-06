@@ -10,6 +10,7 @@ public class ButtonController : MonoBehaviour
     [SerializeField] private bool isLayerA;
     [SerializeField] private LayerMask playerMask;
     private bool playerInReach;
+
     private KeyCode activationKey;
 
     // Start is called before the first frame update
