@@ -106,6 +106,9 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
+        //dont take input if script is disabled
+        if (scriptDisabled) return;
+
         //left right movement
         if (Input.GetKey(right)) { inputX = 1; }
         else if (Input.GetKey(left)) { inputX = -1; }
@@ -143,7 +146,6 @@ public class playerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (scriptDisabled) { return; }
 
         //if grounded -> full controll
         if (isGrounded)

@@ -728,7 +728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6044157775644312671, guid: eeb3ed9c83a84b74fb6f1ff1ad3f5029, type: 3}
       propertyPath: waitTime1
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6044157775644312671, guid: eeb3ed9c83a84b74fb6f1ff1ad3f5029, type: 3}
       propertyPath: waitTime2
@@ -740,7 +740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6044157775644312671, guid: eeb3ed9c83a84b74fb6f1ff1ad3f5029, type: 3}
       propertyPath: playerMask.m_Bits
-      value: 128
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 7428413436689957649, guid: eeb3ed9c83a84b74fb6f1ff1ad3f5029, type: 3}
       propertyPath: m_Size.x
@@ -846,7 +846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6044157775644312671, guid: eeb3ed9c83a84b74fb6f1ff1ad3f5029, type: 3}
       propertyPath: waitTime1
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6044157775644312671, guid: eeb3ed9c83a84b74fb6f1ff1ad3f5029, type: 3}
       propertyPath: waitTime2
@@ -858,7 +858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6044157775644312671, guid: eeb3ed9c83a84b74fb6f1ff1ad3f5029, type: 3}
       propertyPath: playerMask.m_Bits
-      value: 64
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 6121932473571472137, guid: eeb3ed9c83a84b74fb6f1ff1ad3f5029, type: 3}
       propertyPath: isLayerA
