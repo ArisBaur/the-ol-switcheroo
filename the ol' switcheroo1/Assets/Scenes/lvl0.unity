@@ -412,7 +412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1815410002964472551, guid: db0d080a87af7544aa33364a23c784a0, type: 3}
       propertyPath: playerMask.m_Bits
-      value: 128
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 1815410002964472551, guid: db0d080a87af7544aa33364a23c784a0, type: 3}
       propertyPath: openCloseGates.Array.size
@@ -469,6 +469,10 @@ PrefabInstance:
     - target: {fileID: 8913441749699953882, guid: db0d080a87af7544aa33364a23c784a0, type: 3}
       propertyPath: m_Name
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913441749699953882, guid: db0d080a87af7544aa33364a23c784a0, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1221,6 +1225,14 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 13.536113
       objectReference: {fileID: 0}
+    - target: {fileID: 3536420626633738635, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
+      propertyPath: thatPlayer
+      value: 
+      objectReference: {fileID: 2137308103}
+    - target: {fileID: 3536420626633738635, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
+      propertyPath: thisPlayer
+      value: 
+      objectReference: {fileID: 86738033}
     - target: {fileID: 4580518917709691040, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 33.38

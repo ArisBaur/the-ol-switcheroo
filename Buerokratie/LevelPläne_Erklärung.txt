@@ -1,0 +1,12 @@
+die kleinen Farbflecken sind die starposition der Player
+die jeweiligen Positionen/Wege sind danach nummeriert, jeder player ist zur selben zeit an seiner nächste nummer
+Ist ein schwarzes X neben einer Zahl findet ein switch statt
+
+Die normale Map ist weiß
+Move Gates sind grau
+Layer gates sind dünn grün
+Buttons sind in der jeweiligen Farbe ein fetter kreis
+Buttons werden mit jeweiligen Gates gepunktet verbunden in der farbe des buttons
+Jumppads sind in der jeweiligen Farbe (oder weiß für alle) mit einem pfeil drüber und einem pfad wohin man springt
+
+Am ende gibt es die goals welche farbige rauten sind

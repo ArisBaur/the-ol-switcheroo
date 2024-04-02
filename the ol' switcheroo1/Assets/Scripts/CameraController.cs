@@ -8,19 +8,19 @@ public class CameraController : MonoBehaviour
 {
 
     private GameObject thisCamera;
-    [SerializeField] private float restingYpos;
     [SerializeField] private GameObject thisPlayer;
     [SerializeField] private GameObject thatPlayer;
     private Transform thisTf;
     private Transform thatTf;
     private float currentZoom;
+    [SerializeField] private float dampingFactor;
     [SerializeField] private float cameraMoveSpeed;
     [SerializeField] private float cameraZoomSpeed;
     [SerializeField] private float minZoom;
     [SerializeField] private float maxZoom;
 
     private Rigidbody2D rb;
-
+    
     private bool noErrors = false;
 
 
@@ -49,7 +49,7 @@ public class CameraController : MonoBehaviour
 
         // Calculate x and y pos
         float xPos = (thisTf.position.x + thatTf.position.x) / 2f;
-        float yPos = (thisTf.position.y + thatTf.position.y + restingYpos) / 3f;
+        float yPos = (thisTf.position.y + thatTf.position.y) / 2f;
         Vector3 targetPoint = new Vector3(xPos, yPos, -10);
 
 
@@ -63,7 +63,7 @@ public class CameraController : MonoBehaviour
         Vector3 currentPos = rb.position;
         Vector3 deltaPos = targetPoint - currentPos;
         rb.AddForce(deltaPos * cameraMoveSpeed, ForceMode2D.Impulse);
-        rb.velocity *= 0.9f;
+        rb.velocity *= dampingFactor;
         
         // smooth zoom change
         currentZoom = Mathf.Lerp(currentZoom, targetZoom, cameraZoomSpeed);
