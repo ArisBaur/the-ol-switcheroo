@@ -178,11 +178,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d366d525816cf45aa9cd0be0480979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restingYpos: 0
   thisPlayer: {fileID: 0}
   thatPlayer: {fileID: 0}
-  dampingFactor: 0.25
-  cameraMoveSpeed: 5
+  dampingFactor: 111
+  cameraMoveSpeed: 284.1
   cameraZoomSpeed: 0.02
   minZoom: 3
   maxZoom: 15
+  cameraMultiplier: 0
