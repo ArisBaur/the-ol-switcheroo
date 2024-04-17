@@ -78,7 +78,6 @@ public class finishLevel : MonoBehaviour
                 // Start the coroutine to load the next level
                 nextLevelCoroutine = StartCoroutine(LoadNextLevel());
                 loadingNextLevel = true;
-                Debug.Log("Start transferring");
             }
         }
         else
@@ -88,7 +87,6 @@ public class finishLevel : MonoBehaviour
             {
                 StopCoroutine(nextLevelCoroutine);
                 loadingNextLevel = false;
-                Debug.Log("Stopped");
             }
         }
     }

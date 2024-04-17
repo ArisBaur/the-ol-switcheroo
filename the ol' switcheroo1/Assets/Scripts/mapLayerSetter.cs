@@ -7,6 +7,7 @@ public class mapLayerSetter : MonoBehaviour
 {
 
     [SerializeField] private bool isLayerA;
+    [SerializeField] private bool isMapNonInteractive;
     [SerializeField] private Material layerAMaterial;
     [SerializeField] private Material layerBMaterial;
     private string layerAName = "MapA";
@@ -14,8 +15,11 @@ public class mapLayerSetter : MonoBehaviour
 
     private void Update()
     {
-        int layerToSet = (isLayerA ? LayerMask.NameToLayer(layerAName) % 31 : LayerMask.NameToLayer(layerBName)) % 31;
-        gameObject.layer = layerToSet;
+        if (!isMapNonInteractive)
+        {
+            int layerToSet = (isLayerA ? LayerMask.NameToLayer(layerAName) % 31 : LayerMask.NameToLayer(layerBName)) % 31;
+            gameObject.layer = layerToSet;
+        }
         
         Material matToSet = isLayerA ? layerAMaterial : layerBMaterial;
         gameObject.GetComponent<SpriteRenderer>().material = matToSet;
