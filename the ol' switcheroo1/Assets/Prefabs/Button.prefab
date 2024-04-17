@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 4841111809157787489}
   - component: {fileID: 507567645651465049}
   - component: {fileID: 1815410002964472551}
-  - component: {fileID: 2505691242520423506}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,18 +139,3 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 0
---- !u!114 &2505691242520423506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8913441749699953882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d9b2f3efa89084daaefdac6c0f693a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLayerA: 0
-  layerAMaterial: {fileID: 2100000, guid: f1e47cba3c42ac24e9b7ede5b1f2e4d1, type: 2}
-  layerBMaterial: {fileID: 2100000, guid: 5c512c2fb725ba840b323fa091425a7c, type: 2}

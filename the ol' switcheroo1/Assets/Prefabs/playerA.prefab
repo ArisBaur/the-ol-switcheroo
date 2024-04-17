@@ -213,7 +213,7 @@ MonoBehaviour:
   higherJumpModifier: 0.75
   groundMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   acceleration: 0.1
   airControll: 0.25
   speed: 5

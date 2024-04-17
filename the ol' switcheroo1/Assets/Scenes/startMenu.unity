@@ -1135,7 +1135,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1583317619}
         m_TargetAssemblyTypeName: startMenuButtonHandler, Assembly-CSharp
-        m_MethodName: onExitClicked
+        m_MethodName: onPlayClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1541,6 +1541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec9a8f661d0732747ba13cd539563e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: lvl1
 --- !u!4 &1583317620
 Transform:
   m_ObjectHideFlags: 0
