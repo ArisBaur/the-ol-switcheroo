@@ -56,7 +56,7 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float jumpforce;
     [SerializeField] private float higherJumpModifier;
     private float standartJumpGravityScale;
-    public bool isGrounded { get; set; }
+    [SerializeField] public bool isGrounded { get; set; }
     [SerializeField] private LayerMask groundMask;
 
 
@@ -166,7 +166,6 @@ public class playerMovement : MonoBehaviour
     //when touching ground
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("ungrounded!");
         //https://www.youtube.com/watch?v=VsmgZmsPV6w
         LayerMask colliderLayer = other.gameObject.layer;
         if ((groundMask & (1 << colliderLayer)) != 0)
@@ -178,7 +177,6 @@ public class playerMovement : MonoBehaviour
     //when no longer touching ground (falling/jumping)
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("grounded!");
         LayerMask colliderLayer = other.gameObject.layer;
         if ((groundMask & (1 << colliderLayer)) != 0)
         {
