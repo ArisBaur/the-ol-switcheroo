@@ -497,6 +497,11 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!20 &264420712 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1900227463093240474, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
+  m_PrefabInstance: {fileID: 2101510983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &284204480
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,6 +2160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: background
       objectReference: {fileID: 0}
+    - target: {fileID: 4922053426072247657, guid: 3e0b8cf5c2f2cea47ae3af54f7011c46, type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 264420712}
     - target: {fileID: 8143382975799171028, guid: 3e0b8cf5c2f2cea47ae3af54f7011c46, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

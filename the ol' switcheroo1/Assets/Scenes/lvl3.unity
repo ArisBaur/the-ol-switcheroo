@@ -4440,6 +4440,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: background
       objectReference: {fileID: 0}
+    - target: {fileID: 4922053426072247657, guid: 3e0b8cf5c2f2cea47ae3af54f7011c46, type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 2101510984}
     - target: {fileID: 8143382975799171028, guid: 3e0b8cf5c2f2cea47ae3af54f7011c46, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11706,6 +11710,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 264420708}
   m_SourcePrefab: {fileID: 100100000, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
+--- !u!20 &2101510984 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1900227463093240474, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
+  m_PrefabInstance: {fileID: 2101510983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2113454884 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3193800079859286834, guid: 4523f48d588d43d48981f5028abd7733, type: 3}
