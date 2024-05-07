@@ -180,9 +180,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisPlayer: {fileID: 0}
   thatPlayer: {fileID: 0}
-  dampingFactor: 111
-  cameraMoveSpeed: 284.1
-  cameraZoomSpeed: 0.02
-  minZoom: 3
-  maxZoom: 15
-  cameraMultiplier: 0
+  dampingFactor: 0.25
+  cameraMoveSpeed: 10
+  cameraZoomSpeed: 1
+  minZoom: 5
+  maxZoom: 20
+  cameraMultiplier: 1.5

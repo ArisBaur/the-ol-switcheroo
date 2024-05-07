@@ -1856,6 +1856,10 @@ PrefabInstance:
       value: 257
       objectReference: {fileID: 0}
     - target: {fileID: 4789214604262040572, guid: 41ca155a3bc663a4b83a27e2eab7d853, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0745761cd7fc873418b5190089d2d86b, type: 3}
+    - target: {fileID: 4789214604262040572, guid: 41ca155a3bc663a4b83a27e2eab7d853, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0e05546bd9774814d9e7e6c904d4dc4b, type: 2}
@@ -2815,6 +2819,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: playerA
       objectReference: {fileID: 0}
+    - target: {fileID: 9013439614622060286, guid: 8035a9b0fdb63df469891bd94eb3d826, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 05df6ebd921231444b20240facf77b95, type: 3}
     - target: {fileID: 9013439614622060286, guid: 8035a9b0fdb63df469891bd94eb3d826, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

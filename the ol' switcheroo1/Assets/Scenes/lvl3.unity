@@ -11616,7 +11616,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1900227463093240474, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
       propertyPath: orthographic size
-      value: 13.536113
+      value: 3.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 3536420626633738635, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
+      propertyPath: maxZoom
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3536420626633738635, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
+      propertyPath: minZoom
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3536420626633738635, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
       propertyPath: thatPlayer
@@ -11636,7 +11644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3536420626633738635, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
       propertyPath: cameraZoomSpeed
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3536420626633738635, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
       propertyPath: cameraMultiplier
@@ -11644,11 +11652,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4580518917709691040, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -40.1
+      value: -41.78
       objectReference: {fileID: 0}
     - target: {fileID: 4580518917709691040, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.8
+      value: 5.77
       objectReference: {fileID: 0}
     - target: {fileID: 4580518917709691040, guid: d0f789faf54e9f74abcfff8f40415c9a, type: 3}
       propertyPath: m_LocalPosition.z
