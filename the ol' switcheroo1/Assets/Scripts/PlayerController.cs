@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.DebugUI;
 
 
@@ -130,6 +131,10 @@ public class playerMovement : MonoBehaviour
             thisRb.gravityScale = standartJumpGravityScale * higherJumpModifier;
         }
 
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
         //flipping when turning around
         if (isFacingRight && inputX > 0f || !isFacingRight && inputX < 0f)

@@ -12,6 +12,7 @@ public class startMenuButtonHandler : MonoBehaviour
     public void onPlayClicked()
     {
         SceneManager.LoadScene(level);
+        tries_state_saver.tries_counter = 0;
     }
 
     public void onExitClicked()
