@@ -8,15 +8,12 @@ public class spike : MonoBehaviour
 {
 
     [SerializeField] private LayerMask playerMask;
-
+    [SerializeField] private tries_counter triesCounter;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //LayerMask colliderLayer = other.gameObject.layer;
-        //if ((playerMask & (1 << colliderLayer)) != 0)
-        //{
-        //}
+        triesCounter.updateTries();
     }
 
 }

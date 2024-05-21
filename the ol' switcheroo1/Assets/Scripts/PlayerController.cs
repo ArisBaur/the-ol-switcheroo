@@ -56,7 +56,6 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float jumpforce;
     [SerializeField] private float higherJumpModifier;
     private float standartJumpGravityScale;
-    [SerializeField] public bool isGrounded { get; set; }
     [SerializeField] private LayerMask groundMask;
 
 
@@ -107,7 +106,12 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
         //dont take input if script is disabled
-        if (scriptDisabled) return;
+        if (scriptDisabled)
+        {
+            thisRb.velocity = Vector2.zero;
+            anim.SetFloat("speed", 0);
+            return;
+        };
 
         //left right movement
         if (Input.GetKey(right)) { inputX = 1; }
@@ -115,7 +119,7 @@ public class playerMovement : MonoBehaviour
         else { inputX = 0; }
 
         //jumping
-        if (Input.GetKey(jump) && isGrounded)
+        if (Input.GetKey(jump) && IsGrounded())
         {   //only change y velocity -> to jumping force
             thisRb.velocity = new Vector2(thisRb.velocity.x, jumpforce);
         }
@@ -138,8 +142,7 @@ public class playerMovement : MonoBehaviour
 
         //set animation variables -> to change the different animations
         anim.SetFloat("speed", Mathf.Abs(thisRb.velocity.x) / 2); //divided by 2 -> looks better? idk why tho
-        anim.SetBool("isJumping", (thisRb.velocity.y > 0f && !isGrounded)); //if ur jumping up, ur y vel is positive, also u aint grounded
-        anim.SetBool("isFalling", (thisRb.velocity.y < 0f && !isGrounded)); //vice versa
+
 
     }
 
@@ -149,7 +152,7 @@ public class playerMovement : MonoBehaviour
         if (scriptDisabled) return;
 
         //if grounded -> full controll
-        if (isGrounded)
+        if (IsGrounded())
         {
             currentSpeed = Mathf.Lerp(currentSpeed, speed * inputX, acceleration);
         }
@@ -160,31 +163,19 @@ public class playerMovement : MonoBehaviour
         }
 
         thisRb.velocity = new Vector2(currentSpeed, thisRb.velocity.y);
-
     }
 
-    //when touching ground
-    private void OnTriggerEnter2D(Collider2D other)
+
+    private bool IsGrounded()
     {
-        //https://www.youtube.com/watch?v=VsmgZmsPV6w
-        LayerMask colliderLayer = other.gameObject.layer;
-        if ((groundMask & (1 << colliderLayer)) != 0)
-        {
-            isGrounded = true;
-        }
+        // Cast a ray downwards from the player's position
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.75f, groundMask);
+
+        // If the ray hits a collider on the ground layer, consider the player grounded
+        return hit.collider != null;
     }
 
-    //when no longer touching ground (falling/jumping)
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        LayerMask colliderLayer = other.gameObject.layer;
-        if ((groundMask & (1 << colliderLayer)) != 0)
-        {
-            isGrounded = false;
-        }
-    }
 
-    
 
     public void Dissapear(float duration)
     {

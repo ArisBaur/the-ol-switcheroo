@@ -29,6 +29,7 @@ public class CameraController : MonoBehaviour
     {
         thisCamera = gameObject;
         rb = thisCamera.GetComponent<Rigidbody2D>();
+        currentZoom = thisCamera.GetComponent<Camera>().orthographicSize;
     
         if (thisPlayer == null) { Debug.Log("Eyo, Camera: PlayerA is missing UwU"); }
         if (thatPlayer == null) { Debug.Log("Eyo, Camera: PlayerB is missing UwU"); }
@@ -47,6 +48,7 @@ public class CameraController : MonoBehaviour
         {
             return;
         }
+
 
         // Calculate x and y pos
         float xPos = (thisTf.position.x + thatTf.position.x) / 2f;
@@ -68,9 +70,11 @@ public class CameraController : MonoBehaviour
         rb.velocity *= dampingFactor;
 
         // smooth zoom change
-        currentZoom = Mathf.Lerp(currentZoom, targetZoom * cameraMultiplier, cameraZoomSpeed);
+        currentZoom = Mathf.Lerp(currentZoom, targetZoom * cameraMultiplier, cameraZoomSpeed/1000);
         thisCamera.GetComponent<Camera>().orthographicSize = currentZoom;
 
+
+        Debug.Log($"current Zoom: {currentZoom}, target Zoom: {targetZoom}");
     }
 
 }
